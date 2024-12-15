@@ -1,5 +1,5 @@
 import React from "react";
-import { Main, Parent, Title } from "./Components/index.style";
+import { Main, Parent } from "./Components/index.style";
 import Street from "./Components/Street";
 
 function App() {
