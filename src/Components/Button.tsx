@@ -10,15 +10,17 @@ interface ButtonProps {
 
 // Styled component
 const StyledButton = styled.button<ButtonProps>`
-  background-color: ${(props) => (props.primary ? "blue" : "gray")};
-  color: ${(props) => (props.primary ? "white" : "black")};
+  background-color: green;
+  color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+  margin: 10px 0;
 
   &:hover {
-    background-color: ${(props) => (props.primary ? "darkblue" : "darkgray")};
+    background-color: darkgreen;
   }
 `;
 
