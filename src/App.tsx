@@ -14,7 +14,7 @@ function App() {
 
   const intervalRef = useRef<number | null>(null);
   const [start, setStart] = useState<boolean>(false);
-  const [cycle, setCycle] = useState(0);
+  const [, setCycle] = useState(0);
   const [nextInterval, setNextInterval] = useState(10000);
 
   const startCycle = () => {
@@ -26,8 +26,8 @@ function App() {
   const resetSystem = () => {
     clearInterval(intervalRef.current!);
     setStreetAState(TrafficLightState.GREEN);
-    setStreetBState(TrafficLightState.RED); //);
-    setStart(false); // Stop the cycle
+    setStreetBState(TrafficLightState.RED); 
+    setStart(false); 
   };
 
   const startTrafficCycle = (currentCycle: number) => {
@@ -58,21 +58,24 @@ function App() {
     }
 
     // const cyclePhase = (cycle + 1) % 4;
-    setCycle((prev) => (prev + 1) % 4);
+    const nextCycle = (currentCycle + 1) % 4;
+    setCycle(nextCycle);
 
-    if (cycle === 1 || cycle === 3) {
-      setNextInterval(5000);
-    } else {
-      setNextInterval(10000);
+    let interval = 10000;
+    if (nextCycle === 1 || nextCycle === 3) {
+      interval = 5000;
     }
+    setNextInterval(interval);
 
     clearInterval(intervalRef.current!);
     intervalRef.current = window.setInterval(
-      () => startTrafficCycle(cycle),
+      () => startTrafficCycle(nextCycle),
       nextInterval
     );
     // }, 10000);
   };
+
+
 
   useEffect(() => {
     return () => clearInterval(intervalRef.current!);
